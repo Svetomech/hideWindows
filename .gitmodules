@@ -1,0 +1,3 @@
+[submodule "Svetomech.Utilities"]
+	path = Svetomech.Utilities
+	url = https://github.com/Svetomech/Svetomech.Utilities
