@@ -7,3 +7,4 @@ CLI to hide/show windows of specified processes
 
 * Hides/shows ALL the windows of an application.
 * Only remembers the LAST hidden processes, so don't forget to show them before hiding something else.
+* To hide an elevated process you must elevate hideWindows too.
