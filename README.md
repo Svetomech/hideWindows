@@ -1,6 +1,9 @@
-# windowHide
-CLI to hide/show the window of a specified processes
+# hideWindows
+CLI to hide/show windows of specified processes
 
-**Usage:** *windowHide `<processName1> <processName2> ...`*
+**Usage:** *hideWindows `<processName1> <processName2> ...`*
 
-    Hides/shows all (!) the windows of an application.
+**Important notes:**
+
+* Hides/shows ALL the windows of an application.
+* Only remembers the LAST hidden processes, so don't forget to show them before hiding something else.
