@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "windowHide", "windowHide\windowHide.csproj", "{D287B181-096F-45F3-9984-F6A78744B2FE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "hideWindows", "hideWindows\hideWindows.csproj", "{D287B181-096F-45F3-9984-F6A78744B2FE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Svetomech.Utilities", "Svetomech.Utilities\Svetomech.Utilities\Svetomech.Utilities.csproj", "{BD22946B-C1BE-4F95-A031-4FC8BFEC09A5}"
 EndProject
