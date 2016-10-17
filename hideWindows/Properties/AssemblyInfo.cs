@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("hideWindows")]
-[assembly: AssemblyDescription("CLI to hide/show the windows of a specified processes")]
+[assembly: AssemblyDescription("CLI to hide/show windows of a specified processes")]
 #if DEBUG
 [assembly: AssemblyConfiguration("Debug")]
 #else
