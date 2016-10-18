@@ -38,7 +38,10 @@ namespace hideWindows
                 {
                     foreach (string procToShowName in processesToShowNames)
                     {
-                        if (!procToShowName.Equals(Path.GetFileNameWithoutExtension(procToHideName), StringComparison.OrdinalIgnoreCase)) continue;
+                        if (!procToShowName.Equals(Path.GetFileNameWithoutExtension(procToHideName), StringComparison.OrdinalIgnoreCase))
+                        {
+                            continue;
+                        }
 
                         string[] windowsToShowHandles = settings.HiddenProcessesWindows[procToShowName].Split(' ');
                         windowsToShowOrHide = new IntPtr[windowsToShowHandles.Length];
