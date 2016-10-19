@@ -1,9 +1,9 @@
-﻿using System;
+﻿using Svetomech.Utilities;
+using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.IO;
-using static Svetomech.Utilities.NativeMethods;
+using static Svetomech.Utilities.SimpleProcess;
 
 namespace hideWindows
 {
@@ -32,7 +32,7 @@ namespace hideWindows
 
             foreach (string procToHideName in processesToHideNames)
             {
-                IntPtr[] windowsToShowOrHide = null;
+                Window[] windowsToShowOrHide = null;
 
                 if (processesToShowNames?.Length > 0)
                 {
@@ -44,12 +44,12 @@ namespace hideWindows
                         }
 
                         string[] windowsToShowHandles = settings.HiddenProcessesWindows[procToShowName].Split(' ');
-                        windowsToShowOrHide = new IntPtr[windowsToShowHandles.Length];
+                        windowsToShowOrHide = new Window[windowsToShowHandles.Length];
 
                         // Convert windows' names to actual HWNDs
                         for (int i = 0; i < windowsToShowOrHide.Length; ++i)
                         {
-                            windowsToShowOrHide[i] = new IntPtr(Convert.ToInt32(windowsToShowHandles[i]));
+                            windowsToShowOrHide[i] = new Window(new IntPtr(Convert.ToInt32(windowsToShowHandles[i])));
                         }
                     }
                 }
@@ -61,17 +61,17 @@ namespace hideWindows
 
                 List<string> hiddenWindowsHandles = new List<string>();
 
-                foreach (IntPtr window in windowsToShowOrHide)
+                foreach (Window window in windowsToShowOrHide)
                 {
                     if (areWindowsVisible)
                     {
-                        ShowWindow(window, SW_HIDE);
+                        window.Hide();
 
                         hiddenWindowsHandles.Add(window.ToString());
                     }
                     else
                     {
-                        ShowWindow(window, SW_SHOW);
+                        window.Show();
                     }
                 }
 
@@ -83,19 +83,6 @@ namespace hideWindows
 
             settings.HiddenProcessesWindows = hiddenProcessesWindows;
             settings.Save();
-        }
-
-        private static IntPtr[] GetVisibleWindows(string processName)
-        {
-            Process[] instances = Process.GetProcessesByName(Path.GetFileNameWithoutExtension(processName));
-            IntPtr[] handles = new IntPtr[instances.Length];
-
-            for (int i = 0; i < handles.Length; ++i)
-            {
-                handles[i] = instances[i].MainWindowHandle;
-            }
-
-            return handles;
         }
     }
 }
