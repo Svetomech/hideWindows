@@ -67,7 +67,7 @@ namespace hideWindows
                     {
                         window.Hide();
 
-                        hiddenWindowsHandles.Add(window.Handle.ToString());
+                        hiddenWindowsHandles.Add(window.ToString());
                     }
                     else
                     {
