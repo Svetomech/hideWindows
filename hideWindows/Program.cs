@@ -44,13 +44,8 @@ namespace hideWindows
                         }
 
                         string[] windowsToShowHandles = settings.HiddenProcessesWindows[procToShowName].Split(' ');
-                        windowsToShowOrHide = new Window[windowsToShowHandles.Length];
 
-                        // Convert windows' names to actual HWNDs
-                        for (int i = 0; i < windowsToShowOrHide.Length; ++i)
-                        {
-                            windowsToShowOrHide[i] = new Window(new IntPtr(Convert.ToInt32(windowsToShowHandles[i])));
-                        }
+                        Window.PopulateFromHandles(windowsToShowHandles, out windowsToShowOrHide);
                     }
                 }
 
