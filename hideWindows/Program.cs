@@ -1,4 +1,5 @@
 ﻿using Svetomech.Utilities;
+using Svetomech.Utilities.Types;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
@@ -45,28 +46,22 @@ namespace hideWindows
 
                         string[] windowsToShowHandles = settings.HiddenProcessesWindows[procToShowName].Split(' ');
 
-                        Window.PopulateFromHandles(windowsToShowHandles, out windowsToShowOrHide);
+                        windowsToShowOrHide = WindowFactory.Populate.FromHandles(windowsToShowHandles);
                     }
                 }
 
-                // Workaround alternative to IsWindowVisible() WinAPI "user32.dll" call
-                bool areWindowsVisible = !(windowsToShowOrHide?.Length > 0);
-
-                windowsToShowOrHide = !areWindowsVisible ? windowsToShowOrHide : GetVisibleWindows(procToHideName);
+                windowsToShowOrHide = windowsToShowOrHide ?? GetVisibleWindows(procToHideName);
 
                 List<string> hiddenWindowsHandles = new List<string>();
 
                 foreach (Window window in windowsToShowOrHide)
                 {
-                    if (areWindowsVisible)
-                    {
-                        window.Hide();
-
-                        hiddenWindowsHandles.Add(window.ToString());
-                    }
+                    if (!window.IsShown)
+                        window.Show();
                     else
                     {
-                        window.Show();
+                        window.Hide();
+                        hiddenWindowsHandles.Add(window.ToString());
                     }
                 }
 
